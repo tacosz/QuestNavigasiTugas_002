@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -39,7 +39,7 @@ fun ListPemain(
     onUtama: () -> Unit,
     onDaftar: () -> Unit,
     modifier: Modifier = Modifier
-){
+) {
     val image = painterResource(id = R.drawable.bg)
     val allBiodata = listOf(
         listOf(
@@ -125,17 +125,18 @@ fun ListPemain(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 64.dp),
+                .padding(top = 64.dp, start = 10.dp, end = 10.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(text = "Player Data List",
-                fontSize = 32.sp
+                fontSize = 32.sp,
+                color = Color.White,
+                fontWeight = FontWeight.Bold
             )
-
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp)
+                    .padding(bottom = 92.dp, top = 16.dp)
             ) {
                 itemsIndexed(allBiodata) { index, biodata ->
                     Column(
@@ -174,7 +175,7 @@ fun ListPemain(
                             }
                         }
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
             }
         }
@@ -182,19 +183,23 @@ fun ListPemain(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
-                .background(Color.White)
+                .background(Color.Transparent)
                 .padding(vertical = 12.dp)
                 .padding(bottom = 20.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Button(
+                modifier = Modifier
+                    .width(160.dp),
                 onClick = onUtama,
                 colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray),
                 border = BorderStroke(1.dp, Color.LightGray)
             ) {
-                Text("Main", color = Color.Black)
+                Text("Main")
             }
             Button(
+                modifier = Modifier
+                    .width(160.dp),
                 onClick = onDaftar,
                 colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray),
                 border = BorderStroke(1.dp, Color.LightGray)
