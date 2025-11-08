@@ -117,6 +117,51 @@ fun ListPemain(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(text = "Player Data List")
+
+            LazyColumn (
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                itemsIndexed(allBiodata) { index, biodata ->
+                    Column (
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(16.dp))
+                            .background(color = Color.DarkGray)
+                            .padding(20.dp)
+                    ){
+                        biodata.chunked(2).forEach { rowItems ->
+                            Row (
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 8.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                rowItems.forEach { (label, value) ->
+                                    Column (modifier = Modifier.weight(1f)
+                                    ) {
+                                        Text(
+                                            text = label,
+                                            style = MaterialTheme.typography.labelMedium.copy(
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.White
+                                            )
+                                        )
+                                        Text(
+                                            text = value,
+                                            style = MaterialTheme.typography.bodyMedium.copy(
+                                                color = Color.Black
+                                            )
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
+            }
         }
     }
 }
