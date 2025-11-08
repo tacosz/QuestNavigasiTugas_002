@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.Spacer
 import com.example.praktikum6pam.R
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -24,7 +27,9 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HalamanUtama() {
+fun HalamanUtama(
+    onBackBtnClick:()-> Unit
+) {
     val image = painterResource(id = R.drawable.bg)
     Surface (modifier = Modifier.fillMaxSize()) {
         Image(
@@ -36,7 +41,7 @@ fun HalamanUtama() {
         Column (
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 80.dp),
+                .padding(top = 94.dp),
             verticalArrangement = Arrangement.SpaceAround,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -45,8 +50,6 @@ fun HalamanUtama() {
                 fontSize = 44.sp,
                 fontWeight = FontWeight.Bold
             )
-
-            Spacer(modifier = Modifier)
 
             val logo = painterResource(id = R.drawable.rma)
             Image(
@@ -69,6 +72,17 @@ fun HalamanUtama() {
                     color = Color.LightGray,
                     fontSize = 18.sp
                 )
+                Spacer(modifier = Modifier.height(height =10.dp))
+                ElevatedButton(
+                    modifier = Modifier
+                        .width(240.dp)
+                        .padding(bottom = 180.dp),
+                    onClick = onBackBtnClick
+                ){
+                    Text(text = "Login",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold)
+                }
             }
         }
     }
