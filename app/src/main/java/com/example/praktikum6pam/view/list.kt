@@ -1,6 +1,7 @@
 package com.example.praktikum6pam.view
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,8 +26,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.praktikum6pam.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,88 +40,97 @@ fun ListPemain(
     onDaftar: () -> Unit,
     modifier: Modifier = Modifier
 ){
+    val image = painterResource(id = R.drawable.bg)
     val allBiodata = listOf(
         listOf(
-            "NAMA LENGKAP" to "Xabi Alonso",
-            "NUMBER" to "-",
-            "POSISI" to "Head Coach",
-            "ASAL" to "Spain"
+            "Name" to "Xabi Alonso",
+            "Number" to "-",
+            "Position" to "Head Coach",
+            "Origin" to "Spain"
         ),
         listOf(
-            "NAMA LENGKAP" to "Courtois",
-            "NUMBER" to "1",
-            "POSISI" to "Goalkeeper",
-            "ASAL" to "Belgium"
+            "Name" to "Courtois",
+            "Number" to "1",
+            "Position" to "Goalkeeper",
+            "Origin" to "Belgium"
         ),
         listOf(
-            "NAMA LENGKAP" to "E. Militao",
-            "NUMBER" to "3",
-            "POSISI" to "Defender",
-            "ASAL" to "Brazil"
+            "Name" to "E. Militao",
+            "Number" to "3",
+            "Position" to "Defender",
+            "Origin" to "Brazil"
         ),
         listOf(
-            "NAMA LENGKAP" to "A. Carreras",
-            "NUMBER" to "18",
-            "POSISI" to "Defender",
-            "ASAL" to "Spain"
+            "Name" to "A. Carreras",
+            "Number" to "18",
+            "Position" to "Defender",
+            "Origin" to "Spain"
         ),
         listOf(
-            "NAMA LENGKAP" to "Huijsen",
-            "NUMBER" to "24",
-            "POSISI" to "Defender",
-            "ASAL" to "Spain"
+            "Name" to "Huijsen",
+            "Number" to "24",
+            "Position" to "Defender",
+            "Origin" to "Spain"
         ),
         listOf(
-            "NAMA LENGKAP" to "Bellingham",
-            "NUMBER" to "5",
-            "POSISI" to "Midfielder",
-            "ASAL" to "England"
+            "Name" to "Bellingham",
+            "Number" to "5",
+            "Position" to "Midfielder",
+            "Origin" to "England"
         ),
         listOf(
-            "NAMA LENGKAP" to "Camavinga",
-            "NUMBER" to "6",
-            "POSISI" to "Midfielder",
-            "ASAL" to "France"
+            "Name" to "Camavinga",
+            "Number" to "6",
+            "Position" to "Midfielder",
+            "Origin" to "France"
         ),
         listOf(
-            "NAMA LENGKAP" to "Valverde",
-            "NUMBER" to "8",
-            "POSISI" to "Midfielder",
-            "ASAL" to "Uruguay"
+            "Name" to "Valverde",
+            "Number" to "8",
+            "Position" to "Midfielder",
+            "Origin" to "Uruguay"
         ),
         listOf(
-            "NAMA LENGKAP" to "Tchouameni",
-            "NUMBER" to "14",
-            "POSISI" to "Midfielder",
-            "ASAL" to "France"
+            "Name" to "Tchouameni",
+            "Number" to "14",
+            "Position" to "Midfielder",
+            "Origin" to "France"
         ),
         listOf(
-            "NAMA LENGKAP" to "Arda Guler",
-            "NUMBER" to "15",
-            "POSISI" to "Midfielder",
-            "ASAL" to "Belgium"
+            "Name" to "Arda Guler",
+            "Number" to "15",
+            "Position" to "Midfielder",
+            "Origin" to "Belgium"
         ),
         listOf(
-            "NAMA LENGKAP" to "Vini Jr.",
-            "NUMBER" to "7",
-            "POSISI" to "Forward",
-            "ASAL" to "Brazil"
+            "Name" to "Vini Jr.",
+            "Number" to "7",
+            "Position" to "Forward",
+            "Origin" to "Brazil"
         ),
         listOf(
-            "NAMA LENGKAP" to "Mbappe",
-            "NUMBER" to "10",
-            "POSISI" to "Forward",
-            "ASAL" to "France"
+            "Name" to "Mbappe",
+            "Number" to "10",
+            "Position" to "Forward",
+            "Origin" to "France"
         ),
     )
     Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = image,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 100.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(top = 64.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(text = "Player Data List")
+            Text(text = "Player Data List",
+                fontSize = 32.sp
+            )
 
             LazyColumn(
                 modifier = Modifier
@@ -128,7 +142,7 @@ fun ListPemain(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(16.dp))
-                            .background(color = Color.DarkGray)
+                            .background(color = Color.LightGray)
                             .padding(20.dp)
                     ) {
                         biodata.chunked(2).forEach { rowItems ->
@@ -146,7 +160,7 @@ fun ListPemain(
                                             text = label,
                                             style = MaterialTheme.typography.labelMedium.copy(
                                                 fontWeight = FontWeight.Bold,
-                                                color = Color.White
+                                                color = Color.Gray
                                             )
                                         )
                                         Text(
@@ -169,7 +183,8 @@ fun ListPemain(
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .background(Color.White)
-                .padding(vertical = 12.dp),
+                .padding(vertical = 12.dp)
+                .padding(bottom = 20.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Button(

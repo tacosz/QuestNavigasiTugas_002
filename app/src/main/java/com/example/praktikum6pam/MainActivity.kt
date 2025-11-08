@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.praktikum6pam.ui.theme.Praktikum6PAMTheme
 import com.example.praktikum6pam.view.HalamanUtama
+import com.example.praktikum6pam.view.ListPemain
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HalamanUtama(onBackBtnClick = {})
+                    ListPemain(onUtama = {}, onDaftar = {})
                 }
             }
         }
