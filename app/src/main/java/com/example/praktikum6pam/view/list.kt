@@ -118,28 +118,29 @@ fun ListPemain(
         ) {
             Text(text = "Player Data List")
 
-            LazyColumn (
+            LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp)
             ) {
                 itemsIndexed(allBiodata) { index, biodata ->
-                    Column (
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(16.dp))
                             .background(color = Color.DarkGray)
                             .padding(20.dp)
-                    ){
+                    ) {
                         biodata.chunked(2).forEach { rowItems ->
-                            Row (
+                            Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(vertical = 8.dp),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 rowItems.forEach { (label, value) ->
-                                    Column (modifier = Modifier.weight(1f)
+                                    Column(
+                                        modifier = Modifier.weight(1f)
                                     ) {
                                         Text(
                                             text = label,
@@ -161,6 +162,29 @@ fun ListPemain(
                     }
                     Spacer(modifier = Modifier.height(16.dp))
                 }
+            }
+        }
+        Row(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .background(Color.White)
+                .padding(vertical = 12.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Button(
+                onClick = onUtama,
+                colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray),
+                border = BorderStroke(1.dp, Color.LightGray)
+            ) {
+                Text("Main", color = Color.Black)
+            }
+            Button(
+                onClick = onDaftar,
+                colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray),
+                border = BorderStroke(1.dp, Color.LightGray)
+            ) {
+                Text(text = "Form")
             }
         }
     }
