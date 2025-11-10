@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.praktikum6pam.ui.theme.Praktikum6PAMTheme
+import com.example.praktikum6pam.view.FormPendaftaran
 import com.example.praktikum6pam.view.HalamanUtama
 import com.example.praktikum6pam.view.ListPemain
 
@@ -27,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ListPemain(onUtama = {}, onDaftar = {})
+                    FormPendaftaran(onList = {}, onSubmit = {})
                 }
             }
         }
