@@ -1,5 +1,8 @@
 package com.example.praktikum6pam.view
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -29,5 +32,10 @@ fun FormPendaftaran(
     val jenis: List<String> = listOf("Man", "Woman")
     val posisi: List<String> = listOf("Goalkeeper", "Defender", "Midfielder", "Forward", "Coaching Staff")
 
+    var expanded by remember { mutableStateOf(false) }
 
+    val icon = if (expanded)
+        Icons.Filled.KeyboardArrowUp
+    else
+        Icons.Default.KeyboardArrowDown
 }
