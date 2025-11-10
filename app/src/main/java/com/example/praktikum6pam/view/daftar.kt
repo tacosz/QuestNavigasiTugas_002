@@ -298,6 +298,22 @@ fun FormPendaftaran(
                             }
                         }
                     }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Column {
+                        Text(
+                            text = "Origin",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        TextField(
+                            value = txtOrigin,
+                            singleLine = true,
+                            onValueChange = {txtOrigin = it},
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
                 }
             }
         }
