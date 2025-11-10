@@ -1,5 +1,11 @@
 package com.example.praktikum6pam.view
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,6 +17,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,9 +29,14 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -32,7 +44,48 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.praktikum6pam.R
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import kotlinx.coroutines.delay
 
+fun Modifier.listLoading(
+    isLoading: Boolean,
+    durationMillis: Int = 1000,
+): Modifier = composed {
+    if (!isLoading) {
+        return@composed this
+    }
+    val transition = rememberInfiniteTransition(label = "")
+
+    val translateAnimation by transition.animateFloat(
+        initialValue = 0f,
+        targetValue = 50f,
+        animationSpec = infiniteRepeatable(
+            tween(durationMillis = durationMillis,
+                easing = LinearEasing,
+            ),
+            repeatMode = RepeatMode.Restart
+        ),
+    )
+
+    return@composed this
+        .clip(RoundedCornerShape(24.dp))
+        .drawBehind {
+            drawRect(
+                brush = Brush.linearGradient(
+                    colors = listOf(
+                        Color.LightGray.copy(alpha = 0.2f),
+                        Color.LightGray.copy(alpha = 1.0f),
+                        Color.LightGray.copy(alpha = 0.2f),
+                    ),
+                    start = Offset(x = translateAnimation, y = translateAnimation),
+                    end = Offset(x = translateAnimation + 100f, y = translateAnimation + 100f)
+                )
+            )
+        }
+}
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListPemain(
@@ -115,6 +168,11 @@ fun ListPemain(
             "Origin" to "France"
         ),
     )
+    var isLoading by remember { mutableStateOf(true) }
+    LaunchedEffect(key1 = true) {
+        delay(2000)
+        isLoading = false
+    }
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
             painter = image,
@@ -131,51 +189,62 @@ fun ListPemain(
             Text(text = "Player Data List",
                 fontSize = 32.sp,
                 color = Color.White,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
             )
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(bottom = 92.dp, top = 16.dp)
             ) {
-                itemsIndexed(allBiodata) { index, biodata ->
-                    Column(
-                        modifier = Modifier
+                if (isLoading) {
+                    items(7) {
+                        Box(modifier = Modifier
                             .fillMaxWidth()
-                            .clip(RoundedCornerShape(16.dp))
-                            .background(color = Color.LightGray)
-                            .padding(20.dp)
-                    ) {
-                        biodata.chunked(2).forEach { rowItems ->
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                rowItems.forEach { (label, value) ->
-                                    Column(
-                                        modifier = Modifier.weight(1f)
-                                    ) {
-                                        Text(
-                                            text = label,
-                                            style = MaterialTheme.typography.labelMedium.copy(
-                                                fontWeight = FontWeight.Bold,
-                                                color = Color.Gray
+                            .height(180.dp)
+                            .listLoading(isLoading = true)
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                    }
+                } else {
+                    itemsIndexed(allBiodata) { index, biodata ->
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(16.dp))
+                                .background(color = Color.LightGray)
+                                .padding(20.dp)
+                        ) {
+                            biodata.chunked(2).forEach { rowItems ->
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(vertical = 8.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    rowItems.forEach { (label, value) ->
+                                        Column(
+                                            modifier = Modifier.weight(1f)
+                                        ) {
+                                            Text(
+                                                text = label,
+                                                style = MaterialTheme.typography.labelMedium.copy(
+                                                    fontWeight = FontWeight.Bold,
+                                                    color = Color.Gray
+                                                )
                                             )
-                                        )
-                                        Text(
-                                            text = value,
-                                            style = MaterialTheme.typography.bodyMedium.copy(
-                                                color = Color.Black
+                                            Text(
+                                                text = value,
+                                                style = MaterialTheme.typography.bodyMedium.copy(
+                                                    color = Color.Black
+                                                )
                                             )
-                                        )
+                                        }
                                     }
                                 }
                             }
                         }
+                        Spacer(modifier = Modifier.height(8.dp))
                     }
-                    Spacer(modifier = Modifier.height(8.dp))
                 }
             }
         }
