@@ -3,6 +3,7 @@ package com.example.praktikum6pam.view
 import android.media.Image
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,8 +24,12 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -241,6 +246,57 @@ fun FormPendaftaran(
                             shape = RoundedCornerShape(12.dp),
                             modifier = Modifier.fillMaxWidth()
                         )
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Column {
+                        Text(
+                            "Position",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        ExposedDropdownMenuBox(
+                            expanded = expanded,
+                            onExpandedChange = {expanded = it},
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            TextField(
+                                value = txtPosition,
+                                onValueChange = {},
+                                readOnly = true,
+                                shape = RoundedCornerShape(12.dp),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .border(width = 2.dp,
+                                        color = Color.White,
+                                        shape = RoundedCornerShape(12.dp))
+                                    .menuAnchor(),
+                                label = {Text("Chose Position")},
+                                trailingIcon = {
+                                    IconButton(onClick = {}) {
+                                        Icon(
+                                            icon,
+                                            contentDescription = null
+                                        )
+                                    }
+                                },
+                            )
+                            ExposedDropdownMenu(
+                                expanded = expanded,
+                                onDismissRequest = {expanded = false}
+                            ) {
+                                posisi.forEach { opsi ->
+                                    DropdownMenuItem(
+                                        text = {Text(opsi)},
+                                        onClick = {
+                                            txtPosition = opsi
+                                            expanded = false
+                                        },
+                                        contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
             }
