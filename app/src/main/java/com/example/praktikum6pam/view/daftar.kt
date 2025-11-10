@@ -1,6 +1,7 @@
 package com.example.praktikum6pam.view
 
 import android.media.Image
+import android.widget.Button
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -30,6 +31,7 @@ import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -93,7 +95,7 @@ fun FormPendaftaran(
     if (showDialog) {
         AlertDialog(
             onDismissRequest = {showDialog = false},
-            containerColor = Color.DarkGray,
+            containerColor = Color.LightGray,
             icon = { Icon(Icons.Filled.CheckCircle,
                 null,
                 modifier = Modifier.size(64.dp))},
@@ -312,6 +314,47 @@ fun FormPendaftaran(
                             onValueChange = {txtOrigin = it},
                             shape = RoundedCornerShape(12.dp),
                             modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                Row (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 20.dp, end = 20.dp, bottom = 20.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    OutlinedButton(
+                        onClick = onList,
+                        shape = RoundedCornerShape(16.dp)
+                    ) {
+                        Text(
+                            text = "Back",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp
+                        )
+                    }
+                    Button(
+                        modifier = Modifier.width(120.dp),
+                        shape = RoundedCornerShape(16.dp),
+                        enabled = txtName.isNotEmpty() &&
+                                txtGender.isNotEmpty() &&
+                        txtNumber.isNotEmpty() &&
+                        txtPosition.isNotEmpty() &&
+                        txtOrigin.isNotEmpty(),
+                        onClick = {
+                            name = txtName
+                            gender = txtGender
+                            number = txtNumber
+                            position = txtPosition
+                            origin = txtOrigin
+                            showDialog = true
+                        }
+                    ) {
+                        Text(
+                            text = "Submit",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp
                         )
                     }
                 }
