@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -127,6 +128,18 @@ fun FormPendaftaran(
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
-        Column () {  }
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 80.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Form Registration",
+                fontSize = 40.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.LightGray
+            )
+        }
     }
 }
