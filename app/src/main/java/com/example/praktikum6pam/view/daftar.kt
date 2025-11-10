@@ -15,8 +15,19 @@ fun FormPendaftaran(
     onSubmit: () -> Unit
 ) {
     var txtName by remember { mutableStateOf("") }
+    var txtGender by remember { mutableStateOf("") }
     var txtNumber by remember { mutableStateOf("") }
     var txtPosition by remember { mutableStateOf("") }
     var txtOrigin by remember { mutableStateOf("") }
+
+    var name by remember { mutableStateOf("") }
+    var gender by remember { mutableStateOf("") }
+    var number by remember { mutableStateOf("") }
+    var position by remember { mutableStateOf("") }
+    var origin by remember { mutableStateOf("") }
+
+    val jenis: List<String> = listOf("Man", "Woman")
+    val posisi: List<String> = listOf("Goalkeeper", "Defender", "Midfielder", "Forward", "Coaching Staff")
+
 
 }
