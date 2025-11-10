@@ -30,7 +30,7 @@ fun App(
         ){
             composable(route = Navigasi.Main.name) {
                 HalamanUtama(
-                    onBackBtnClick = {navController.navigate(Navigasi.Main.name)}
+                    onBackBtnClick = {navController.navigate(Navigasi.List.name)}
                 )
             }
             composable(route = Navigasi.List.name) {

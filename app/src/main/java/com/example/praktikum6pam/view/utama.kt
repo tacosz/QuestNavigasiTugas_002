@@ -104,7 +104,8 @@ fun HalamanUtama(
                             strokeWidth = 3.dp,
                             color = Color.White
                         )
-                    }else {
+                    }
+                    else {
                         Text(
                             text = "Login",
                             fontSize = 20.sp,
