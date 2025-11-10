@@ -1,7 +1,9 @@
 package com.example.praktikum6pam.view
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
@@ -77,6 +79,27 @@ fun FormPendaftaran(
                     Text(text = "Succed", fontWeight = FontWeight.Bold, fontSize = 24.sp, color = Color.White)
                     Text(text = "Data saved successfully", fontSize = 16.sp, color = Color.White)
                 }
+            },
+            text = {
+                Column (modifier = Modifier.fillMaxWidth()) {
+                    Text(text = "Name", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    Text(text = name, fontWeight = FontWeight.Medium, fontSize = 16.sp)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(text = "Gender", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    Text(text = gender, fontWeight = FontWeight.Medium, fontSize = 16.sp)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(text = "Number", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    Text(text = number, fontWeight = FontWeight.Medium, fontSize = 16.sp)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(text = "Position", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    Text(text = position, fontWeight = FontWeight.Medium, fontSize = 16.sp)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(text = "Origin", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    Text(text = origin, fontWeight = FontWeight.Medium, fontSize = 16.sp)
+                }
+            },
+            confirmButton = {
+
             }
         )
     }
