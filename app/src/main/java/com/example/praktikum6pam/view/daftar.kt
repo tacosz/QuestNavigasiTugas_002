@@ -38,4 +38,12 @@ fun FormPendaftaran(
         Icons.Filled.KeyboardArrowUp
     else
         Icons.Default.KeyboardArrowDown
+
+    fun clearData(){
+        txtName = ""
+        txtGender = ""
+        txtNumber = ""
+        txtPosition = ""
+        txtOrigin = ""
+    }
 }
