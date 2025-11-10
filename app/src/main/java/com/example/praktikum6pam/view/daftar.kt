@@ -226,6 +226,22 @@ fun FormPendaftaran(
                             }
                         }
                     }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Column {
+                        Text(
+                            text = "Number",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        TextField(
+                            value = txtNumber,
+                            singleLine = true,
+                            onValueChange = {txtNumber = it},
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
                 }
             }
         }
