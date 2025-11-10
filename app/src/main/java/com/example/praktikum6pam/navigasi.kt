@@ -4,9 +4,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
-import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.praktikum6pam.view.FormPendaftaran
 import com.example.praktikum6pam.view.HalamanUtama
@@ -49,3 +49,14 @@ fun App(
     }
 }
 
+private fun cancelAndBackToMain(
+    navController: NavHostController
+){
+    navController.popBackStack(Navigasi.Main.name, inclusive = false)
+}
+
+private fun backToList(
+    navController: NavHostController
+){
+    navController.popBackStack(Navigasi.List.name, inclusive = false)
+}
